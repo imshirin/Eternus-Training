@@ -1,0 +1,78 @@
+<apex:page standardController="Invoice__c" extensions="ABC_Container_Extension" renderAs="PDF">
+<apex:form styleclass="borderClass" style="border:1px solid blue;">
+<apex:stylesheet value="{!URLFOR($Resource.ABC_ContainerCSS)}"/>
+<apex:pageBlock >
+<table>
+<tr>
+<td>
+<apex:outputLabel value="{!$Label.trainingdata__company}"/><br/>
+<apex:outputLabel value="{!$Label.trainingdata__street}"/><br/>
+<apex:outputLabel value="{!$Label.trainingdata__city}"/><br/>
+<apex:outputLabel value="{!$Label.trainingdata__phone}"/>
+</td>
+<td class="columnSpacing">
+   <h3 class="invoiceLabel"><apex:outputLabel value="{!$Label.trainingdata__invoice}"/></h3>
+           <apex:dataTable value="{!Invoice__c}" var="c" id="theTable" headerClass="tableheadcolor" columnsWidth="100px, 100px">
+             <apex:column styleclass="tablehead"> 
+                 <apex:facet name="header" >Invoice #</apex:facet>
+                 <apex:outputText value="{!c.Name}"/>
+             </apex:column>
+             
+             <apex:column styleclass="tablehead"> 
+                 <apex:facet name="header">Date</apex:facet>
+                 <apex:outputText value="{!c.Date__c}"/>
+             </apex:column>
+                          
+ </apex:dataTable>
+ </td>
+ </tr>
+</table>
+<br/> <br/> <br/>
+<table>
+ <tr>
+     <td>
+         <apex:dataTable value="{!Invoice__c}" var="c" headerClass="tableheadcolor">
+             <apex:column styleclass="billToHead"> 
+                 <h1><apex:facet name="header">Bill To:</apex:facet></h1>
+                 <apex:outputText value="{!c.Contact__c}"/><br/>
+                 <apex:outputText value="{!c.Company__c}"/><br/>
+                 <apex:outputText value="{!c.Billing_Street__c}"/><br/>
+                 <apex:outputText value="{!c.Billing_City__c}"/>
+                 <apex:outputText value="{!c.Billing_State__c}"/>
+                 <apex:outputText value="{!c.Billing_PostalCode__c}"/><br/>
+                 <apex:outputText value="{!c.Phone__c}"/><br/>
+                 <apex:outputText value="{!c.EmailId__c}"/>
+             </apex:column>
+          </apex:dataTable>
+     </td>
+ </tr>
+
+ </table>
+ <br/><br/><br/>
+ <table>
+ <tr>
+     <td>
+        <apex:dataTable value="{!keyMap}" var="k" headerClass="tableheadcolor3" columnsWidth="90%,90%">
+             <apex:column style="cellspacing:30px;" styleclass="tablehead"> 
+                 <apex:facet name="header">Description</apex:facet>
+                 <apex:outputText value="{!k}"/>
+             </apex:column>
+             <apex:column styleclass="tablehead"> 
+                 <apex:facet name="header">Amount</apex:facet>
+
+                 <apex:outputText value="{!mapExpenses[k]}"/>
+             </apex:column>
+          </apex:dataTable>
+     </td>
+ </tr>
+
+ </table>
+</apex:pageBlock>
+<apex:pageBlock >
+    <apex:outputLabel styleclass="footer" value="{!$Label.trainingdata__footer1}"/><br/>
+    <apex:outputLabel styleclass="footer" value="{!$Label.trainingdata__footer2}"/>
+
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>

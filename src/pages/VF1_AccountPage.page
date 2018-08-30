@@ -1,0 +1,31 @@
+<apex:page standardController="Account" recordsetvar="accounts">
+<apex:form >   
+    <apex:pageBlock title="SearchResults" id="ParentBlock">
+        
+        <apex:pageBlockSection title="Accounts">
+            <apex:pageBlockTable value="{!accounts}" var="aObj">
+            
+             
+            <apex:column >
+            <apex:commandLink value="{!aObj.Name}" rerender="relatedList"> 
+                        <apex:param name="acc" value="{!aObj.Id}" assignto="{!id}"/>
+            </apex:commandLink>
+            </apex:column>
+            
+            <apex:column value="{!aObj.Phone}"/>
+            <apex:column value="{!aObj.BillingStreet}"/>
+         
+     </apex:pageBlockTable>
+                 </apex:pageBlockSection>
+            </apex:pageBlock>
+            </apex:form>
+            
+            <apex:pageBlock id="relatedList">
+                  <apex:relatedList list="Contacts">
+                  </apex:relatedList>
+            
+                <apex:relatedList list="Opportunities">
+                </apex:relatedList> 
+            </apex:pageBlock>
+
+</apex:page>

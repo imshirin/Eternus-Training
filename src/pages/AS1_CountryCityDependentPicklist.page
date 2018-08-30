@@ -1,0 +1,15 @@
+<apex:page Controller="AS1_CountryCityDependentList_Controller">
+    <apex:form >
+        <apex:outputLabel value="Country"/ >
+            <apex:selectList label="country" value="{!country}" size="1" multiselect="false">
+                <apex:selectOptions value="{!Countries_List}"/>
+                <apex:actionSupport event="onchange" action="{!fetchCities}" rerender="contrySelect"/>
+            </apex:selectList>
+        <apex:outputPanel id="contrySelect">
+        <apex:outputLabel value="City"/ >
+            <apex:selectList label="City" value="{!city}" size="1" multiselect="false" >
+                <apex:selectOptions value="{!City_List}"/>
+            </apex:selectList>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

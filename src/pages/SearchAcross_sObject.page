@@ -1,0 +1,45 @@
+<apex:page Controller="SearchAcross_sObject" standardStylesheets="false" applyBodyTag="false">
+    <apex:slds /> 
+		<apex:form id="formId">
+			<div>
+    
+
+				<apex:pageBlock title="Search Result" id="block1" >
+					<apex:inputText value="{!searchstring}" label="Input"/> <br/><br/>
+					<apex:commandButton value="Search records" action="{!searchRecords}" reRender="block2" styleClass="slds-button slds-button--neutral"/> 
+					<apex:commandButton value="Clear records" action="{!clear}" reRender="block2"/> 
+				</apex:pageBlock> 
+
+				<apex:pageBlock id="block2">
+                    <apex:pageblockTable id="accID" value="{!account_List}" var="acc" rendered = "{!if(account_List!= null, if(account_List.size > 0 , true, false), false)}"> 
+                    <apex:column value="{!acc.name}"/> 
+                    <apex:column value="{!acc.id}"/> 
+				</apex:pageBlockTable> 
+
+				<apex:pageBlockTable id="conID" value="{!contact_List}" var="con" rendered = "{!if(contact_List!= null, if(contact_List.size > 0 , true, false), false)}" styleClass="slds-table slds-table--bordered slds-table--cell-buffer"> 
+                    <apex:column value="{!con.name}"/>
+                    <apex:column value="{!con.firstname}"/>
+                    <apex:column value="{!con.lastname}"/>
+                    <apex:column value="{!con.id}"/>
+				</apex:pageBlockTable>
+
+				<apex:pageBlockTable id="oppID" value="{!Opportunity_List}" var="opp" rendered = "{!if(opportunity_List!= null, if(opportunity_List.size > 0 , true, false), false)}"> 
+                    <apex:column value="{!opp.name}"/>
+                    <apex:column value="{!opp.id}"/>
+				</apex:pageBlockTable>
+
+				<apex:pageBlockTable id="leadID" value="{!Lead_List}" var="lead" rendered = "{!if(lead_List!= null, if(lead_List.size > 0 , true, false), false)}"> 
+					<apex:column value="{!lead.name}"/>
+					<apex:column value="{!lead.id}"/>
+				</apex:pageBlockTable>
+
+            
+            <!--  apex:selectList size="2">
+            <apex:selectOptions value="{!dynamiclist}"></apex:selectOptions>
+            </apex:selectList>
+            <apex:commandButton value="Test" action="{!test}" rerender="out" status="status"/>
+ 			-->
+			</apex:pageBlock>    
+    	</div>
+	</apex:form>
+</apex:page>

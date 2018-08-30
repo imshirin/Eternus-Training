@@ -1,0 +1,18 @@
+<apex:page >
+    <apex:panelGrid columns="3" id="theGrid">
+        <apex:outputText value="First" id="theFirst"/>
+        <apex:outputText value="Second" id="theSecond"/>
+        <apex:outputText value="Third" id="theThird"/>
+        <apex:outputText value="Fourth" id="theFourth"/>
+    </apex:panelGrid>
+    
+    
+    <apex:panelGrid columns="3">
+        <apex:outputText value="First" id="theFirst1"/>
+        <apex:outputText value="Second" id="theSecond1"/>
+        <apex:panelGroup id="theGroup">
+            <apex:outputText value="Third" id="theThird1"/>
+            <apex:outputText value="Fourth" id="theFourth1"/>
+        </apex:panelGroup>
+    </apex:panelGrid>
+</apex:page>

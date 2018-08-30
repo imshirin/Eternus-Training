@@ -1,0 +1,34 @@
+<apex:page controller="Query">
+    <apex:form id="formId">
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Object list">
+                    <apex:selectList size="1" value="{!selectedObj}"> 
+                        <apex:selectOptions value="{!objects}"/>
+                        <apex:actionSupport action="{!accessFields}" event="onchange" rerender="formId"/>
+                    </apex:selectList>
+                    </apex:outputLabel>
+                </apex:pageBlockSectionItem>
+       
+        <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!objDescription}" id="od">
+                    </apex:outputLabel> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                   <apex:panelGrid >
+                       <apex:panelGroup >
+                           <apex:selectList value="{!sfields}" multiselect="true" style="width:200px; height:200px;">
+                           <apex:selectOptions value="{!fNotSelectedOptions }">
+                           </apex:selectOptions>
+                           </apex:selectList>
+                       </apex:panelGroup>
+                   </apex:panelGrid>
+                </apex:pageBlockSectionItem>
+                
+                
+       </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

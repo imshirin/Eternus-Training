@@ -1,0 +1,12 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes">
+    <p class="red">here</p>
+    span1 <span id="red"> span2 </span>
+    <p id="red">abc</p>
+    
+    <aura:attribute name="var" type="string" default="0037F000002Wt3z"/>
+    {!v.var}
+	
+    <!--component within component and passing attribute to other component-->
+   	<c:browseFile parentId="0017F000004ia2g"/>
+   	<c:browseFile parentId="{#v.var}"/>
+</aura:component>

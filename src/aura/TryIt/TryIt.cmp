@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes"  controller="ControllerClass">
+    <aura:attribute name="attr_name1" type="String"  default="world" required="true"/>
+    {!v.attr_name1}
+    <ui:inputText label="Name" value="{!v.attr_name1}" required="true"/>
+    You entered: <ui:outputText value="{!v.attr_name1}"/>
+    <h1 class = "classId">
+        {!v.attr_name1}
+    </h1>
+    <aura:attribute name="accountLst" type="Account[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"></aura:handler>  
+	<aura:iteration items="{!v.accountLst}" var="acc" indexVar="idx"> 
+           <p>{!acc.Name}</p>
+    </aura:iteration>
+</aura:component>

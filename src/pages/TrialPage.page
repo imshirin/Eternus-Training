@@ -1,0 +1,9 @@
+<apex:page standardController="Account" tabStyle="Opportunity" showHeader="false">
+
+    <apex:pageBlock title="User: {!$User.FirstName}">
+         Account : {!Account.name}
+         
+         <apex:detail title="Showing details" subject="{!account.id}" relatedList="false" />
+    </apex:pageBlock>
+
+</apex:page>

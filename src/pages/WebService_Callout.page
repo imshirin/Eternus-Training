@@ -1,0 +1,22 @@
+<apex:page controller="CalloutDemo_XML" showHeader="false" sidebar="false" standardStylesheets="false">  
+    <apex:form style="align:center">
+    	<apex:inputText value="{!address}">Enter IP Address </apex:inputText>
+        <apex:commandButton action="{!makeCallout}" value="Get Details"/>
+        
+        <apex:pageBlock rendered="{!(result.size != null)}">
+
+    <table border="1" >
+        <tr>
+			<th>Details</th>
+        </tr>
+        <apex:repeat var="str" value="{!result}">
+        <tr>
+            <td>{!str}</td>
+        </tr>
+        </apex:repeat> 
+
+    </table>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

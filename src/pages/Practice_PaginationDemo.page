@@ -1,0 +1,15 @@
+<apex:page standardController="lead" recordSetvar="leadRecords">
+  <apex:pageBlock title="Viewing Leads">
+  <apex:form id="theForm">
+    <apex:pageBlockSection >
+      <apex:dataList var="a" value="{!leadRecords}" type="1" id="listId">
+        {!a.lastname}
+      </apex:dataList>
+    </apex:pageBlockSection>
+    <apex:panelGrid columns="2">
+      <apex:commandLink action="{!previous}" ReRender="listId">Previous</apex:commandlink>
+      <apex:commandLink action="{!next}" ReRender="listId">Next</apex:commandlink>
+    </apex:panelGrid>
+  </apex:form> 
+  </apex:pageBlock>
+</apex:page>

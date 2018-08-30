@@ -1,0 +1,5 @@
+<aura:component >
+    <lightning:buttonMenu alternativeText="Toggle menu">
+        <lightning:menuItem label="Menu Item 1" value="menuitem1" iconName="utility:table" />
+    </lightning:buttonMenu>
+</aura:component>

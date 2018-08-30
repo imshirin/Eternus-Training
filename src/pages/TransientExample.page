@@ -1,0 +1,8 @@
+<apex:page controller="TransientController">
+  T1: {!t1} <br/>
+  T2: {!t2} <br/>
+  <apex:form >
+    <apex:commandLink value="refresh"/><br/>
+    Hi {!$User.FirstName}
+  </apex:form>
+</apex:page>

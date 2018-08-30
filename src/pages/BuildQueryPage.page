@@ -1,0 +1,99 @@
+<apex:page controller="BuildQuery">
+<apex:pageMessages id="pageMsg"></apex:pageMessages>
+    <apex:form id="formId">
+        <apex:pageBlock >
+
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select Object"/>
+                    <apex:selectList size="1" value="{!selectedObj}">  <!-- selectedob is a string declared in controller in which value which is we are selecting from picklist will be stored -->
+                        <apex:selectOptions value="{!selectedObject_List}"/>  <!-- selectedObject_List is a listname of selectoption in controller  -->
+                            <apex:actionSupport event="onchange" action="{!accessFields}" reRender="formId, pageMsg"/> 
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection rendered="{!isObjSelected}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select Fields"/>
+                    <apex:panelGrid columns="3">
+                        <apex:panelGroup style="width:40%">
+                            <apex:selectList value="{!sfields}" multiselect="true" style="width:120px;height:120px;">
+                                <apex:selectOptions value="{!fieldsNotSelectedOptions}"/>
+                            </apex:selectList>
+                        </apex:panelGroup>
+                        <apex:panelGroup style="width:20%;height:120px;">
+                            <table height="120px">
+                                <tr><td><apex:commandButton value=">>" action="{! addFields}" style="width:80px;" reRender="formId, pageMsg"/></td></tr>
+                                <tr><td><apex:commandButton value="<<" action="{! removeFields}" style="width:80px;" reRender="formId, pageMsg"/></td></tr>
+                            </table>
+                        </apex:panelGroup>
+                        <apex:panelGroup >
+                            <apex:selectList value="{!rfields}" multiselect="true" style="width:120px;height:120px;">
+                                <apex:selectOptions value="{!fieldSelectedOptions}"/>
+                            </apex:selectList>
+                        </apex:panelGroup>
+                    </apex:panelGrid>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection rendered="{!isObjSelected}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Maximum # records to Display"/>
+                    <apex:panelGrid columns="2">
+                        <apex:panelGroup style="width:70%">
+                            <apex:selectList value="{!selectedLimit}" size="1" multiselect="false">
+                                <apex:selectOptions value="{!NumberOfRecordsOption}"/>
+                            </apex:selectList>
+                        </apex:panelGroup>
+                        <apex:panelGroup style="width:30%">
+                            <apex:outputLabel value="Sort As"/>
+                            <apex:selectRadio value="{!selectedOrder}">    <!-- radio is used for selecting order from user -->
+                                <apex:selectOptions value="{!orderOptions}"/><br/>
+                            </apex:selectRadio>
+                        </apex:panelGroup>
+                    </apex:panelGrid>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection rendered="{!isObjSelected}">
+                <p>
+                <apex:pageBlockSectionItem >
+                    <apex:commandButton value="Execute Query" action="{!generateQuery}" reRender="formId, pageMsg" style="width:80px;"/>
+                </apex:pageBlockSectionItem>
+                </p>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!isQueryExecuted}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="SOQL Query"/>
+                    <apex:panelGrid >
+                        <apex:outputLabel value="{!query}"/>
+                    </apex:panelGrid>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            
+            <apex:pageBlockSection rendered="{!isQueryExecuted}">
+                <apex:panelGrid >
+                    <apex:panelGroup >
+                        <apex:outputLabel value="Result Count"/>
+                        <apex:outputLabel value="{!countRecords}"/>
+                    </apex:panelGroup>
+                </apex:panelGrid>
+            </apex:pageBlockSection>
+            
+            
+            <apex:pageBlockSection rendered="{!isQueryExecuted}">
+                <apex:pageBlockSectionItem >
+                     <apex:outputLabel value="Query Result"/>
+                    <apex:pageBlockTable value="{!result}" var="objData">
+                       <apex:repeat value="{!queryFields}" var="fieldName">
+                           <apex:column value="{!objData[fieldName]}"/>
+                       </apex:repeat>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

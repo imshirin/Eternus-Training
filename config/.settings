@@ -1,0 +1,17 @@
+{
+    "projectName": "Eternus-Training",
+    "username": "shirin@espl.com",
+    "id": "ff47b610-ac24-11e8-819c-5983ca373e28",
+    "namespace": "TrainingData",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://thisisadomain-dev-ed.my.salesforce.com",
+    "workspace": "D:\\MavensMate Workspace",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "AuraDefinitionBundle"
+    ]
+}

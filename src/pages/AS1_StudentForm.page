@@ -1,0 +1,25 @@
+<apex:page standardController="Student__c" extensions="AS1_StudentForm_Controller" language="{!code}">
+    <apex:pageMessages id="msg"></apex:pageMessages>
+    <apex:form id="formID">
+        <apex:pageBlock title="{!$Label.trainingdata__formtitle}" >
+        <apex:selectList label="Language_code" value="{!Language_code}" size="1" multiselect="false">
+            <apex:selectOptions value="{!option}"/>
+            <apex:actionSupport event="onchange" action="{!compareAndSetLanguage}" />
+        </apex:selectList>
+            <apex:pageBlockSection columns="2" >
+                <apex:inputField value="{!Student__c.Name}"/>
+                <apex:inputField value="{!Student__c.RollNumber__c}"/>
+                <apex:inputField value="{!Student__c.Gender__c}"/>
+                <apex:inputField value="{!Student__c.Course_Applying_for__c}"/>
+                <apex:inputField value="{!Student__c.H_S_C__c}"/>
+                <apex:inputField value="{!Student__c.S_S_C__c}"/>
+                <apex:inputField value="{!Student__c.Country__c}"/>
+                <apex:inputField value="{!Student__c.State__c}"/>
+                <apex:inputField value="{!Student__c.City__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!customSave}" value="{!$Label.trainingdata__save}" rerender="msg, formId"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

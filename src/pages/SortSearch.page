@@ -1,0 +1,55 @@
+<apex:page controller="ContactAlphabeticalSearch">
+
+<head>
+<apex:includeScript value="{! $Resource.jQuery }"/>
+<apex:includeScript value="{!URLFOR($Resource.jQuery, '/js/jquery-ui-1.8.6.custom.min.js')}"  />
+<apex:stylesheet value="{!URLFOR($Resource.jQuery, '/css/ui-lightness/jquery-ui-1.8.6.custom.css')}"  />
+<script>
+</script>
+</head>
+
+<apex:image value="{!URLFOR($Resource.headerblue)}" width="100%" height="20%"/>
+   <apex:form >
+   <script src="{!URLFOR($Resource.DeleteSortContacts, '/StaticResource/DisplaySort.js')}"/>
+
+       <apex:pageBlock title="Contacts">
+       <apex:toolbar id="toolbar" styleClass="rich-toolbar" style="background-color:White;background-image:none;">
+           <apex:repeat value="{!alpabetList}" var="alphabet">
+               <apex:outputLink onclick="searchMethod('{!alphabet}');return false;">{!alphabet}</apex:outputLink>
+           </apex:repeat>
+
+           <apex:actionFunction name="searchMethod" action="{!display}" rerender="result">
+               <apex:param name="idparam" assignTo="{!searchAlphabet}" value=""/>
+           </apex:actionFunction>
+       </apex:toolbar>
+</apex:pageBlock>
+           <apex:pageBlock id="result">
+               <apex:pageBlockTable value="{!showContacts}" var="contact" rendered="{!AND(NOT(ISNULL(showContacts)),showContacts.size>0)}">
+                   <apex:column value="{!contact.name}"/>
+                   <apex:column value="{!contact.email}"/>
+                   <apex:column value="{!contact.MobilePhone}"/>
+                   <apex:column value="{!contact.Birthdate}"/>
+                   <apex:column >
+                   <apex:commandLink value="Delete" onclick="deleteContact('{!contact.Id}')" rerender="result">
+                   </apex:commandLink>
+               </apex:column>
+               </apex:pageBlockTable>
+               <apex:outputText value="No Results Found... " rendered="{!OR(ISNULL(showContacts),showContacts.size<=0)}"/>
+      </apex:pageBlock>
+   </apex:form>
+   <script>
+       function deleteContact(AccId) {
+           Visualforce.remoting.Manager.invokeAction(
+               "{!$RemoteAction.ContactAlphabeticalSearch.deleteContact}",AccId,
+               function(result, event) {
+                   console.log("event", event);
+                   if (event.status) {
+                       alert("Record deleted successfully");
+                   } else {
+                       alert(event.message);
+                   }
+               }
+           )
+       }
+    </script>
+ </apex:page>

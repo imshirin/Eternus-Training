@@ -1,0 +1,17 @@
+<aura:component controller="FileController"  implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId">
+
+    <aura:attribute name="parentId" type="Id"/>
+    
+    <aura:handler event="aura:waiting" action="{!c.waiting}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
+    
+    <div class="container">
+        <input type="file" class="file" aura:id="file" />
+        <ui:button label="Save" press="{!c.save}"/>
+        
+        <div aura:id="uploading" class="notUploading">
+            <img src="/resource/paura__images/loading-gray.gif" alt="uploading" class="small-spinner" /> Uploading...
+    	</div>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,82 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false">
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+    </head>
+
+
+    <style>
+    .thumbnail{
+        line-height: 3;
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        padding: 0px;
+    }
+
+
+        p {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    </style>
+    
+
+
+    <div class="container-fluid">
+
+        <div class="page-header">
+            <h2>Linvio Compare<br/> <small>Easily compare your Linvio settings for optimal configuration</small></h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"> 
+                <h3>Select a Package</h3>
+            
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">Linvio Events</a></li>
+                    <li><a href="#">Linvio Connect</a></li>
+                    <li><a href="#">Linvio Package A</a></li>
+                    <li><a href="#">Linvio Package B</a></li>
+                </ul>
+
+            </div>
+        
+            <div class="col-md-9"> 
+                <h3>Available Components</h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <div class="col-md-3"> 
+                            <p class = "thumbnail"> Workflow Rule </p>
+                        </div>
+
+                        <div class = "col-md-3">
+                            <p class = "thumbnail"> Validation Rule </p>
+                        </div>
+  
+                        <div class = "col-md-3">
+                            <p class = "thumbnail"> Assignment Rule </p>
+                        </div>
+
+                        <div class = "col-md-3">
+                            <p class = "thumbnail"> Page Layouts </p>
+                        </div>
+
+                        <div class = "col-md-3">
+                            <p class = "thumbnail"> Object Permissions </p>
+                        </div>
+
+                        <div class = "col-md-3">
+                            <p class = "thumbnail"> Field Level Security </p>
+                        </div>
+
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:page>
